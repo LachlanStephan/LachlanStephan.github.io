@@ -3,13 +3,6 @@ const filter = getElement("filter");
 function getBlogData() {
 	return [
 		{
-			id: "4",
-			date: "20 Apr 2024",
-			name: "La La Land",
-			path: "blog/la-la-land",
-			tags: "Film review, Art",
-		},
-		{
 			id: "3",
 			date: "10 Apr 2024",
 			name: "Approaching 3 years in software",
@@ -47,14 +40,16 @@ function appendBlogLinks() {
 			text = text + " (wip)";
 		}
 
-		text = text + " (" + data[i].tags + ")";
+		text = text + " [" + data[i].tags + "]";
 
-		container.appendChild(createLink(text, data[i].path + ".html"));
+		li = createElement("li");
+		li.appendChild(createLink(text, data[i].path + ".html"));
+		container.appendChild(li);
 	}
 }
 
 function appendBackButton() {
-	if (!getBlogDataElement()) {
+	if (!isBlogPage()) {
 		return;
 	}
 
@@ -62,13 +57,8 @@ function appendBackButton() {
 	main.appendChild(createBlogBackButton());
 }
 
-function getBlogDataElement() {
-	return getElement("blog-data");
-}
-
 function assembleBlogDatum() {
-	const e = getBlogDataElement();
-	if (!e) {
+	if (!isBlogPage()) {
 		return;
 	}
 

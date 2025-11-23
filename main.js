@@ -35,7 +35,9 @@ function createUrl(pathSuffix, baseUrl) {
 
 function createFooter() {
 	const footer = createElement("footer");
+	footer.appendChild(createElement("hr"));
 	footer.appendChild(createAddress());
+	footer.appendChild(createExperienceLink());
 	addClass(footer, "footer");
 
 	return footer;
@@ -48,10 +50,24 @@ function createAddress() {
 	return address;
 }
 
-function createLink(name, path) {
+function createExperienceLink() {
+	const container = createElement("div");
+	container.appendChild(
+		createLink(
+			"Experience",
+			createUrl("work/experience.html", getBaseUrl())
+		)
+	);
+	return container;
+}
+
+function createLink(name, path, targetBlank = false) {
 	const link = createElement("a");
 	link.innerHTML = name;
 	link.setAttribute("href", path);
+	if (targetBlank) {
+		link.setAttribute("target", "_blank");
+	}
 
 	return link;
 }
@@ -60,8 +76,8 @@ function addClass(element, className) {
 	element.classList.add(className);
 }
 
-function createElement(name, content) {
-	const el = document.createElement(name);
+function createElement(element, content) {
+	const el = document.createElement(element);
 	if (content) {
 		el.innerHTML = content;
 	}
@@ -82,6 +98,15 @@ function appendFooterToEndOfMain() {
 	const b = document.getElementsByTagName("body")[0];
 
 	b.appendChild(createFooter());
+}
+
+function isBlogPage() {
+	const e = getElement("blog-data");
+	if (!e) {
+		return false;
+	}
+
+	return true;
 }
 
 function queueOnLoadMethods(methods) {
