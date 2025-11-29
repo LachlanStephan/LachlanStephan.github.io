@@ -86,11 +86,22 @@ function createElement(element, content) {
 }
 
 function getElement(id) {
-	return document.getElementById(id);
+	let e = document.getElementById(id);
+	if (!e) {
+		e = document.getElementsByClassName(id)[0];
+		if (!e) {
+			e = document.getElementsByTagName(id)[0];
+			if (!e) {
+				return null;
+			}
+		}
+	}
+
+	return e;
 }
 
 function appendNavToHeader() {
-	const h = document.getElementById("header");
+	const h = getElement("header");
 	h.prepend(createNav());
 }
 
@@ -101,7 +112,7 @@ function appendFooterToEndOfMain() {
 }
 
 function isBlogPage() {
-	const e = getElement("blog-data");
+	const e = getElement("blogData");
 	if (!e) {
 		return false;
 	}
@@ -112,9 +123,20 @@ function isBlogPage() {
 function queueOnLoadMethods(methods) {
 	for (let i = 0; i < methods.length; i++) {
 		window.addEventListener("load", function () {
-			methods[i]();
+			let f = methods[i].function;
+			let args = methods[i].args;
+			f(...args);
 		});
 	}
 }
 
-queueOnLoadMethods([appendNavToHeader, appendFooterToEndOfMain]);
+queueOnLoadMethods([
+	{
+		function: appendNavToHeader,
+		args: [],
+	},
+	{
+		function: appendFooterToEndOfMain,
+		args: [],
+	},
+]);

@@ -2,28 +2,38 @@ const filter = getElement("filter");
 
 function getBlogData() {
 	return [
-		{
-			id: "3",
-			date: "10 Apr 2024",
-			name: "Approaching 3 years in software",
-			path: "blog/approaching-3-years-in-software",
-			tags: "Software development, Opinion, Rant",
-		},
-		{
-			id: "2",
-			date: "20 Nov 2022",
-			name: "How to be perfect",
-			path: "blog/how-to-be-perfect",
-			tags: "Moral philosophy, Book review",
-		},
-		{
-			id: "1",
-			date: "15 Jun 2022",
-			name: "One year in software",
-			path: "blog/one-year-in-software",
-			tags: "Software development",
-		},
+		getBlogDataStructure(
+			"3",
+			"10 Apr 2024",
+			"Approaching 3 years in software",
+			"blog/approaching-3-years-in-software",
+			"Software development, Opinion, Rant"
+		),
+		getBlogDataStructure(
+			"2",
+			"20 Nov 2022",
+			"How to be perfect",
+			"blog/how-to-be-perfect",
+			"Moral philosophy, Book review"
+		),
+		getBlogDataStructure(
+			"1",
+			"15 Jun 2022",
+			"One year in software",
+			"blog/one-year-in-software",
+			"Software development"
+		),
 	];
+}
+
+function getBlogDataStructure(id, date, title, path, tags) {
+	return {
+		id: id,
+		date: date,
+		title: title,
+		path: path,
+		tags: tags,
+	};
 }
 
 function appendBlogLinks() {
@@ -34,7 +44,7 @@ function appendBlogLinks() {
 
 	const data = getBlogData();
 	for (let i = 0; i < data.length; i++) {
-		let text = "(" + data[i].id + ") " + data[i].name;
+		let text = "(" + data[i].id + ") " + data[i].title;
 
 		if (data[i].wip) {
 			text = text + " (wip)";
@@ -53,7 +63,7 @@ function appendBackButton() {
 		return;
 	}
 
-	const main = document.getElementsByTagName("main")[0];
+	const main = getElement("main");
 	main.appendChild(createBlogBackButton());
 }
 
@@ -67,12 +77,17 @@ function assembleBlogDatum() {
 		return;
 	}
 
-	e.appendChild(createElement("p", "Written: " + datum.date));
-	e.appendChild(createElement("p", "Tag(s): " + datum.tags));
+	const e = getElement("blogData");
+	if (!e) {
+		return;
+	}
+
+	e.appendChild(createElement("h3", "Written: " + datum.date));
+	e.appendChild(createElement("h3", "Tag(s): " + datum.tags));
 }
 
 function getCurrentBlogId() {
-	const b = document.getElementsByTagName("body")[0];
+	const b = getElement("body");
 	if (b.dataset.id) {
 		return b.dataset.id;
 	}
@@ -109,4 +124,17 @@ function filterBlogs() {
 	}
 }
 
-queueOnLoadMethods([appendBlogLinks, assembleBlogDatum, appendBackButton]);
+queueOnLoadMethods([
+	{
+		function: appendBlogLinks,
+		args: [],
+	},
+	{
+		function: assembleBlogDatum,
+		args: [],
+	},
+	{
+		function: appendBackButton,
+		args: [],
+	},
+]);

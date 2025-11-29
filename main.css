@@ -4,12 +4,15 @@
 	--light: #fffff2;
 	--dark: #133337;
 	--accent: #ff8396;
+	--border-radius: 3px;
+	--border: 2px solid #ff8396;
 }
 
 .theme {
 	background-color: var(--light);
 	color: var(--dark);
-	a {
+	a,
+	button {
 		color: var(--dark);
 	}
 }
@@ -18,7 +21,8 @@
 	.theme {
 		background-color: var(--dark);
 		color: var(--light);
-		a {
+		a,
+		button {
 			color: var(--light);
 		}
 	}
@@ -55,7 +59,6 @@ a {
 	background-position: 0 100%;
 	background-repeat: repeat-x;
 	background-size: 4px 4px;
-	border-radius: 2px;
 	padding: 0.25rem;
 	margin: 0.25rem 0.25rem 0.25rem 0;
 	text-decoration: none;
@@ -64,12 +67,37 @@ a {
 
 a:hover {
 	background-size: 4px 50px;
+	border-radius: var(--border-radius);
 }
 
 .blogLinks {
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
+}
+
+.experienceContainer,
+.experienceContainer > article {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.experienceContainer > article > section {
+	border-left: var(--border);
+	padding: 0 0 0 1rem;
+}
+
+#experienceSwitcher {
+	width: 5rem;
+	background-color: var(--accent);
+	border: var(--border);
+	border-radius: var(--border-radius);
+	padding: 0.5rem;
+}
+
+#experienceSwitcher:hover {
+	cursor: pointer;
 }
 
 .backBtn {
