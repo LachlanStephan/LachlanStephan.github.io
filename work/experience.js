@@ -12,7 +12,7 @@ function getSoftwareJobs() {
 			"",
 			"Software Engineer",
 			"Squiz",
-			"PHP, Typescript, React, Postgres, Cloudformation, Bash, PHPUnit, Cypress"
+			"PHP, Typescript, React, Postgres, Cloudformation, AWS, Bash, PHPUnit, Cypress"
 		),
 		getJobDataStructure(
 			"Sep 2021",
@@ -70,10 +70,7 @@ function createExperience(data) {
 		);
 		const title = createElement("p", "Title: " + datum.title);
 		const company = createElement("p", "Company: " + datum.company);
-		const skills = createElement(
-			"p",
-			"Skills: " + "[" + datum.skills + "]"
-		);
+		const skills = createElement("p", "Skills: " + datum.skills);
 
 		wrapper.appendChild(title);
 		wrapper.appendChild(company);
