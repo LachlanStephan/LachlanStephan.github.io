@@ -120,6 +120,14 @@ function isBlogPage() {
 	return true;
 }
 
+function capitliseFirstLetter(word) {
+	if (!word[0] || !word[1]) {
+		return;
+	}
+
+	return word[0].toUpperCase() + word.slice(1, word.length);
+}
+
 function queueOnLoadMethods(methods) {
 	for (let i = 0; i < methods.length; i++) {
 		window.addEventListener("load", function () {

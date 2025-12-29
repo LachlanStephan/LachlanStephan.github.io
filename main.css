@@ -88,6 +88,11 @@ a:hover {
 	padding: 0 0 0 1rem;
 }
 
+.experienceToggles {
+	display: flex;
+	gap: 1rem;
+}
+
 #experienceSwitcher {
 	width: 5rem;
 	background-color: var(--accent);

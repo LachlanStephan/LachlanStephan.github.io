@@ -1,29 +1,7 @@
 const filter = getElement("filter");
 
 function getBlogData() {
-	return [
-		getBlogDataStructure(
-			"3",
-			"10 Apr 2024",
-			"Approaching 3 years in software",
-			"blog/approaching-3-years-in-software",
-			"Software development, Opinion, Rant"
-		),
-		getBlogDataStructure(
-			"2",
-			"20 Nov 2022",
-			"How to be perfect",
-			"blog/how-to-be-perfect",
-			"Moral philosophy, Book review"
-		),
-		getBlogDataStructure(
-			"1",
-			"15 Jun 2022",
-			"One year in software",
-			"blog/one-year-in-software",
-			"Software development"
-		),
-	];
+	return [];
 }
 
 function getBlogDataStructure(id, date, title, path, tags) {

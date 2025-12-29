@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Experience</title>
 
-		<link rel="icon" type="image/x-icon" href="images/cartoon-me.ico" />
+		<link rel="icon" type="image/x-icon" href="../images/cartoon-me.ico" />
 		<link rel="stylesheet" href="../main.css" />
 		<script src="../main.js" defer></script>
 		<script src="./experience.js" defer></script>
@@ -16,9 +16,20 @@
 			<h1>Experience (Software)</h1>
 		</header>
 		<main id="experienceData" class="experienceContainer">
-			<button id="experienceSwitcher" onclick="toggleExperience()">
-				Tennis
-			</button>
+			<div class="experienceToggles">
+				<button
+					id="experienceSwitcher"
+					onclick="toggleExperience('software')"
+				>
+					Software
+				</button>
+				<button
+					id="experienceSwitcher"
+					onclick="toggleExperience('tennis')"
+				>
+					Tennis
+				</button>
+			</div>
 		</main>
 	</body>
 </html>

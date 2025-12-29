@@ -1,7 +1,9 @@
-let showSoftware = true;
-
 const softwareExperience = createExperience(getSoftwareJobs());
 const tennisExperience = createExperience(getTennisJobs());
+const experienceTypes = {
+	tennis: "tennis",
+	software: "software",
+};
 
 function getSoftwareJobs() {
 	return [
@@ -95,19 +97,15 @@ function appendExperienceHHTML(html) {
 	container.appendChild(html);
 }
 
-function toggleExperience() {
+function toggleExperience(type) {
 	removeExperience();
-	if (showSoftware) {
-		updateToggleButtonText("Software");
-		updateHeaderText("Tennis");
+	if (type === experienceTypes.tennis) {
 		appendExperienceHHTML(tennisExperience);
 	} else {
-		updateToggleButtonText("Tennis");
-		updateHeaderText("Software");
 		appendExperienceHHTML(softwareExperience);
 	}
 
-	showSoftware = !showSoftware;
+	updateHeaderText(capitliseFirstLetter(type));
 }
 
 function removeExperience() {
@@ -117,11 +115,6 @@ function removeExperience() {
 	}
 
 	container.remove();
-}
-
-function updateToggleButtonText(text) {
-	const btn = getElement("experienceSwitcher");
-	btn.innerHTML = text;
 }
 
 function updateHeaderText(text) {
