@@ -1,51 +1,51 @@
-const softwareExperience = createExperience(getSoftwareJobs());
-const tennisExperience = createExperience(getTennisJobs());
+const softwareJobData = [
+	[
+		"Nov 2022",
+		"",
+		"Software Engineer",
+		"Squiz",
+		"PHP, Symfony, Typescript, React, Postgres, Cloudformation, AWS, Bash, PHPUnit, Cypress",
+	],
+	[
+		"Sep 2021",
+		"Nov 2022",
+		"Junior Software Engineer",
+		"Truckit.net",
+		"PHP, Typescript, Angular, MySQL, CSS modules",
+	],
+	[
+		"Jun 2021",
+		"Sep 2021",
+		"Graduate Software Engineer",
+		"CompliantERP",
+		"Javascript, XML, NodeJS, SQL",
+	],
+];
+const tennisJobData = [
+	[
+		"Jan 2020",
+		"Jun 2021",
+		"Regional Coordinator / Senior Coach",
+		"Tennis for Kids",
+	],
+	["Jan 2012", "Dec 2019", "Coach / Head Coach", "Top Tennis Academy"],
+];
+
+const softwareExperience = createExperience(formatJobs(softwareJobData));
+const tennisExperience = createExperience(formatJobs(tennisJobData));
 const experienceTypes = {
 	tennis: "tennis",
 	software: "software",
 };
 
-function getSoftwareJobs() {
-	return [
-		getJobDataStructure(
-			"Nov 2022",
-			"",
-			"Software Engineer",
-			"Squiz",
-			"PHP, Typescript, React, Postgres, Cloudformation, AWS, Bash, PHPUnit, Cypress"
-		),
-		getJobDataStructure(
-			"Sep 2021",
-			"Nov 2022",
-			"Junior Software Engineer",
-			"Truckit.net",
-			"PHP, Typescript, Angular, MySQL, CSS modules"
-		),
-		getJobDataStructure(
-			"Jun 2021",
-			"Sep 2021",
-			"Graduate Software Engineer",
-			"CompliantERP",
-			"Javascript, XML, NodeJS, SQL"
-		),
-	];
-}
+function formatJobs(jobData) {
+	let jobs = [];
 
-function getTennisJobs() {
-	return [
-		getJobDataStructure(
-			"Jan 2020",
-			"Jun 2021",
-			"Regional Coordinator / Senior Coach",
-			"Tennis for Kids"
-		),
-		getJobDataStructure(
-			"Jan 2012",
-			"Dec 2019",
-			"Coach / Head Coach",
-			"Top Tennis Academy"
-		),
-	];
+	jobData.forEach((jobDatum) => {
+		jobs.push(getJobDataStructure(...jobDatum));
+	});
+
+	return jobs;
 }
 
 function getJobDataStructure(start, end, title, company, skills) {
@@ -66,7 +66,7 @@ function createExperience(data) {
 		const start = createElement("p", "From: " + datum.start);
 		const end = createElement(
 			"p",
-			"To: " + (datum.end === "" ? "Present" : datum.end)
+			"To: " + (datum.end === "" ? "Present" : datum.end),
 		);
 		const title = createElement("p", "Title: " + datum.title);
 		const company = createElement("p", "Company: " + datum.company);
